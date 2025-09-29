@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lohnrechner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef5ff;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 15px;
+            width: 100%;
+            padding: 10px;
+            background: steelblue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: darkblue;
+        }
+
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Lohnrechner</h2>
+
+        <label>Tarif:</label>
+        <select id="tarif">
+            <option value="15">Basic (15 €/h)</option>
+            <option value="18">Senior (18 €/h)</option>
+        </select>
+
+        <label>Anzahl:</label>
+        <input type="number" id="anzahl" value="0">
+
+        <label>Einheit:</label>
+        <select id="einheit">
+            <option value="stunden">Stunden</option>
+            <option value="kurse">Kurse</option>
+        </select>
+
+        <label>Vertretungen:</label>
+        <input type="number" id="vertretungen" value="0">
+
+        <label>Zusatzaufgaben:</label>
+        <input type="number" id="zusatz" value="0">
+
+        <label>Wochenendstunden:</label>
+        <input type="number" id="wochenende" value="0">
+
+        <label>Geteilte Kurse:</label>
+        <input type="number" id="geteilt" value="0">
+
+        <button onclick="berechnen()">Berechnen</button>
+
+        <div id="result">Gesamtlohn: 0 €</div>
+    </div>
+
+    <script>
+        function berechnen() {
+            const tarif = parseFloat(document.getElementById("tarif").value);
+            const anzahl = parseInt(document.getElementById("anzahl").value) || 0;
+            const einheit = document.getElementById("einheit").value;
+            const vertretungen = parseInt(document.getElementById("vertretungen").value) || 0;
+            const zusatz = parseInt(document.getElementById("zusatz").value) || 0;
+            const wochenende = parseInt(document.getElementById("wochenende").value) || 0;
+            const geteilt = parseInt(document.getElementById("geteilt").value) || 0;
+
+            let lohn = 0;
+            if (einheit === "stunden") {
+                lohn = anzahl * tarif;
+            } else {
+                lohn = anzahl * tarif * 0.75; // Kurs = 45 Min = 75% von Stunde
+            }
+
+            let bonus = 0;
+            if (vertretungen >= 7) bonus = vertretungen * 10;
+            else if (vertretungen === 6) bonus = 60;
+            else if (vertretungen >= 3) bonus = 30;
+
+            const zusatzBonus = zusatz * 3.5;
+            const weekendBonus = wochenende * 2;
+            const geteiltBonus = geteilt * 3 * (tarif / 2);
+
+            const gesamt = lohn + bonus + zusatzBonus + weekendBonus + geteiltBonus;
+
+            document.getElementById("result").innerText = "Gesamtlohn: " + gesamt.toFixed(2) + " €";
+        }
+    </script>
+</body>
+
+</html>
