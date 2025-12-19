@@ -18,7 +18,10 @@
         </select>
 
         <label>Anzahl an Stunden:</label>
-        <input type="number" id="anzahl" value="0">
+        <div class="input-group">
+            <input type="number" id="anzahl" value="0">
+            <button class="add-btn" onclick="addThree()">+3</button>
+        </div>
 
         <label>Einheit:</label>
         <select id="einheit">
@@ -44,6 +47,12 @@
     </div>
 
     <script>
+        function addThree() {
+            const anzahlInput = document.getElementById("anzahl");
+            const currentValue = parseInt(anzahlInput.value) || 0;
+            anzahlInput.value = currentValue + 3;
+        }
+
         function berechnen() {
             const tarif = parseFloat(document.getElementById("tarif").value);
             const anzahl = parseInt(document.getElementById("anzahl").value) || 0;
@@ -75,6 +84,5 @@
         }
     </script>
 </body>
-
 
 </html>
