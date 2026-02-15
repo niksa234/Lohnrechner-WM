@@ -3,5 +3,5 @@ Da wir oft Schwierigkeiten haben unsere Abrechnung aus dem Büro zu verstehen, h
 Ihr sollt angeben ob ihr Junior oder Senior Kursleitung seid, wie viele Stunden oder Kurse (45min) ihr gearbeitet habt und wie viele davon am Wochenende (Freitag inkl.) waren. 
 Zusatzaufgaben und die aufgeteilten Kurse können ebenfalls berechnet werden.
 
-Hier ist der link zu der laufenden Website https://niksa234.github.io/Lohnrechner-WM/
+Hier ist der link zu der laufenden Website https://lohnrechner.ksani.de/
 
